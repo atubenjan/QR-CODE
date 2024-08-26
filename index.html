@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="./css/style.css">
+    <link rel="stylesheet" type="text/css" href="./css/generator.css">
+    <link rel="stylesheet" type="text/css" href="./css/scanner.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="shortcut icon" type="image/x-icon" href="./qr-code.png">
+    <title>QR Code | VDevs</title>
+</head>
+<body>
+<div class="container">
+ <nav>  
+    <button class="nav-gene btn active">Generator</button>
+    <button class="nav-scan btn">Scan</button>
+  </nav>
+
+  <div class="generator">
+    <nav><h1>Qr Code Generator</h1></nav>
+    <p>Paste a Url or Enter text to Create Qr Code</p>
+    <div class="generator-form">
+      <input type="text" placeholder="Enter text or url">
+      <button>Generate QR Code</button>
+    </div>
+    <div class="generator-img">
+      <img src="./qr-code.png" alt="qr-code">
+    </div>
+    <div class="generator-btn">
+      <div class="generator-btn">
+  <button class="btn-link download-btn">Download<i class="fa-solid fa-file-arrow-down"></i></button>
+  <button class="btn-link print-btn">Print<i class="fa-solid fa-print"></i></button> <!-- New Print Button -->
+</div>
+    </div>
+  </div> 
+
+  <div class="scanner" style="display:none;">
+    <h1>
+      QR code Scanner or Reader
+      <i class="fa-solid fa-camera"></i>
+      <i class="fa-solid fa-circle-stop"></i>
+    </h1>
+    <form class="scanner-form">
+      <input type="file" accept="image/*" hidden>
+      <img src="./qr-code.png" alt="qr-code">
+      <video></video>
+      <div class="content">
+        <i class="fa-solid fa-cloud-arrow-up"></i>
+        <p> Upload QR Code to Scan</p>
+      </div>
+    </form>
+    <div class="scanner-details">
+      <textarea dirname="">Vdevs</textarea>
+    <div class="btn">
+      <button class="close">Close</button>
+      <button class="copy">Copy</button>
+    </div> </div>
+  </div>
+</div>
+<script src="./js/main.js"></script>
+<script src="./js/generator.js"></script>
+<script src="./js/scanner.js"></script>
+<script src="./js/instascan.min.js"></script>
+</body>
+</html>
