@@ -68,4 +68,15 @@ border-radius: 5px;
 .generator-btn .btn-link:hover{
 padding: 10px;
 background: rgba(36, 113, 255, 0.1);
+} /* General button styles */
+.generator-btn button {
+    padding: 10px 20px; 
+    margin: 5px;
+    border: none; 
+    border-radius: 5px; 
+    background-color: #007bff;
+    color: #ffffff;
+    font-size: 16px; 
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease; /* Smooth transition for hover effects */
 }

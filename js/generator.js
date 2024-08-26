@@ -2,10 +2,11 @@ const generatorDiv = document.querySelector(".generator");
 const generateBtn = generatorDiv.querySelector(".generator-form button");
 const qrInput = generatorDiv.querySelector(".generator-form input");
 const qrImg = generatorDiv.querySelector(".generator-img img");
-const downloadBtn = generatorDiv.querySelector(".generator-btn .download-btn"); // Updated selector for Download button
-const printBtn = generatorDiv.querySelector(".generator-btn .print-btn"); // Selector for Print button
+const downloadBtn = generatorDiv.querySelector(".generator-btn .download-btn");
+const printBtn = generatorDiv.querySelector(".generator-btn .print-btn");
 
 let imgURL = '';
+let imgName = ''; // To store the generated name
 
 generateBtn.addEventListener("click", () => {
     let qrValue = qrInput.value;
@@ -13,7 +14,8 @@ generateBtn.addEventListener("click", () => {
 
     generateBtn.innerText = "Generating QR Code..."; 
 
-    imgURL = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${qrValue}`;
+    imgName = generateRandomName(); // Generate a random name starting with "BA"
+    imgURL = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(qrValue)}`;
     qrImg.src = imgURL;
 
     qrImg.addEventListener("load", () => {
@@ -29,16 +31,14 @@ downloadBtn.addEventListener("click", () => {
 
 printBtn.addEventListener("click", () => {
     if (!imgURL) return;
-    
+    printImage();
 });
 
 function fetchImage(url) {
     fetch(url).then(res => res.blob()).then(file => {
-        console.log(file);
         let tempFile = URL.createObjectURL(file);
-        let fileName = url.split("/").pop().split(".")[0];
         let extension = file.type.split("/")[1];
-        download(tempFile, fileName, extension);
+        download(tempFile, imgName, extension); // Use generated name with "BA" prefix
     }).catch(() => {
         console.error("Failed to fetch image.");
         imgURL = '';
@@ -54,8 +54,24 @@ function download(tempFile, fileName, extension) {
     a.remove();
 }
 
+function printImage() {
+    const printWindow = window.open('', '_blank');
+    printWindow.document.write(`
+        <html>
+            <head>
+                <title>Print QR Code</title>
+            </head>
+            <body>
+                <img src="${imgURL}" alt="QR Code" onload="window.print(); window.close();">
+            </body>
+        </html>
+    `);
+    printWindow.document.close();
+}
 
-qrInput.addEventListener("input",()=>{
-    if(!qrInput.value.trim())
-    return generatorDiv.classlist.remove("active");
-})
+function generateRandomName() {
+    const prefix = "BA"; // Prefix to start the name
+    const timestamp = Date.now().toString(); // Current timestamp
+    const randomChars = Math.random().toString(36).substring(2, 8); // Random string
+    return `${prefix}_${timestamp}_${randomChars}`; // Example output: BA_1618327203132_k3j7l9
+}
