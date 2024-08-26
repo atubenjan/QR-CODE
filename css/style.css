@@ -46,9 +46,9 @@ nav button{
   opacity: 0.1;
 }
 nav button.active{
-	border-bottom: 2px solid #0283d8;
+	border-bottom: 2px solid #FF8800;
 	font-weight: 700;
-	color: #0283d8; opacity: 1;
+	color: #FF8800; opacity: 1;
 }
 ::-webkit-scrollbar{
 	display: none;
@@ -62,5 +62,5 @@ nav button.active{
 }
 
 .btn:hover {
-	border-bottom: 2px solid #0283d8;
+	border-bottom: 2px solid #FF8800;
 }

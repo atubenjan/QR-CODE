@@ -13,7 +13,7 @@ generateBtn.addEventListener("click", () => {
 
     generateBtn.innerText = "Generating QR Code..."; 
 
-    imgURL = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(qrValue)}`;
+    imgURL = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${qrValue}`;
     qrImg.src = imgURL;
 
     qrImg.addEventListener("load", () => {
